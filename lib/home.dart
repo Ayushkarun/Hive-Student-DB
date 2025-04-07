@@ -25,17 +25,9 @@ class _HomeState extends State<Home> {
   final FocusNode _domainFocusNode = FocusNode();
   final FocusNode _ageFocusNode = FocusNode();
   final FocusNode _placeFocusNode = FocusNode();
+  final FocusNode _savefocusnode = FocusNode();
   final MydbServices _service = MydbServices();
   List<Mydb> _items = [];
-
-  @override//keyboard
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      FocusScope.of(context).unfocus();
-    });
-  }
 
   @override
   void dispose() {
@@ -175,12 +167,18 @@ class _HomeState extends State<Home> {
               controller: _nameController,
               focusNode: _nameFocusNode,
               decoration: InputDecoration(labelText: 'Name'),
+              onSubmitted: (value) {
+                FocusScope.of(context).requestFocus(_domainFocusNode);
+              },
             ),
             SizedBox(height: 10),
             TextField(
               controller: _domainController,
               focusNode: _domainFocusNode,
               decoration: InputDecoration(labelText: 'Domain'),
+              onSubmitted: (value) {
+                FocusScope.of(context).requestFocus(_ageFocusNode);
+              },
             ),
             const SizedBox(height: 10),
             Row(
@@ -189,6 +187,9 @@ class _HomeState extends State<Home> {
                   child: TextField(
                     controller: _ageController,
                     focusNode: _ageFocusNode,
+                    onSubmitted: (value) {
+                      FocusScope.of(context).requestFocus(_placeFocusNode);
+                    },
                     keyboardType: TextInputType.number, // Number keyboard
                     decoration: const InputDecoration(labelText: 'Age'),
                   ),
@@ -198,13 +199,21 @@ class _HomeState extends State<Home> {
                   child: TextField(
                     controller: _placeController,
                     focusNode: _placeFocusNode,
+                    onSubmitted: (value) {
+                      FocusScope.of(context).requestFocus(_savefocusnode);
+                    },
+
                     decoration: const InputDecoration(labelText: 'Place'),
                   ),
                 ),
               ],
             ),
             SizedBox(height: 10),
-            ElevatedButton(onPressed: _saveItem, child: Text('Save')),
+            ElevatedButton(
+              focusNode: _savefocusnode,
+              onPressed: _saveItem,
+              child: Text('Save'),
+            ),
             SizedBox(height: 10),
             Expanded(
               child:
@@ -219,7 +228,7 @@ class _HomeState extends State<Home> {
                             child: ListTile(
                               leading: CircleAvatar(
                                 child: Text("${index + 1}"),
-                              ),
+                              ), //
                               onTap: () {
                                 FocusScope.of(context).unfocus();
                                 Navigator.push(

@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
 part 'mydb_model.g.dart';
+/////flutter packages pub run build_runner build
 
 @HiveType(typeId: 0)
 class Mydb

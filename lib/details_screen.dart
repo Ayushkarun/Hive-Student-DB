@@ -20,7 +20,7 @@ class Screen2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      // Removed AppBar
+
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20),
@@ -87,7 +87,6 @@ class Screen2 extends StatelessWidget {
 
               const Spacer(),
 
-              // 👇 Bottom back button
               Center(
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
@@ -104,7 +103,7 @@ class Screen2 extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                   onPressed: () {
-                     FocusScope.of(context).unfocus(); 
+                    //  FocusScope.of(context).unfocus(); 
                     Navigator.pop(context);
                   },
                 ),
