@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
         _domainController.text.isEmpty) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text("Please fill both fields!")));
+      ).showSnackBar(SnackBar(content: Text("Please fill all fields!")));
       return;
     }
     final newItem = Mydb(
